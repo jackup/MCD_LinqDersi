@@ -93,7 +93,7 @@ namespace MCD_LinqDersi
             #endregion
 
             #region Predicate Delegate Kullanımı
-
+            /*
             Predicate<Musteri> predicate = new Predicate<Musteri>(predicateDelegateMetod);
 
             var predicateDelegateKullanim1 = musteriListe.FindAll(predicate);
@@ -105,6 +105,22 @@ namespace MCD_LinqDersi
             var predicateDelegateKullanim4 = musteriListe.FindAll((Musteri m) => { return m.dogumTarihi.Year > 1990; });
 
             var predicateDelegateKullanim5 = musteriListe.FindAll(m => m.dogumTarihi.Year > 1990);
+            */
+            #endregion
+
+            #region Action Delegate Kullanımı
+            //1.Yöntem :
+            Action<Musteri> actionMusteri = new Action<Musteri>(MusteriListele);
+            musteriListe.ForEach(actionMusteri);
+            //2.Yöntem :
+            musteriListe.ForEach(new Action<Musteri>(MusteriListele));
+            //3.Yöntem :
+            musteriListe.ForEach(delegate (Musteri m) { Console.WriteLine(m.isim + " " + m.soyisim); });
+            //4.Yöntem :
+            musteriListe.ForEach((Musteri m) => { Console.WriteLine(m.isim + " " + m.soyisim); });
+            //5.Yöntem :
+            musteriListe.ForEach(m => { Console.WriteLine(m.isim + " " + m.soyisim); });
+
             #endregion
         }
         static bool funcDelegateKullanimi(Musteri m)
@@ -121,6 +137,11 @@ namespace MCD_LinqDersi
                 return true;
             else
                 return false;
+        }
+
+        static void MusteriListele(Musteri m)
+        {
+            Console.WriteLine(m.isim + " " + m.soyisim);
         }
 
     }
