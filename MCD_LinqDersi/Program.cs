@@ -8,10 +8,12 @@ namespace MCD_LinqDersi
 {
     class Program
     {
+        
         static void Main(string[] args)
         {
             DataSource ds = new DataSource();
             List<Musteri> musteriListe = ds.musteriListesi();
+
 
             #region Denemeler
             //Liste içerisinde bulunan isim değeri a ile başlayan kayıt sayısı
@@ -64,7 +66,61 @@ namespace MCD_LinqDersi
             }
 
 
+
             #endregion
+
+            #region Delegate Kullanımı
+            //Linq ile :
+            var delegateKullanim1 = musteriListe.Where(x => x.isim.StartsWith("A"));
+
+            //Delegate ile :
+            Func<Musteri, bool> funcDelegate1 = new Func<Musteri, bool>(funcDelegateKullanimi);
+            var delegateKullanim2 = musteriListe.Where(funcDelegate1);
+            var delegateKullanim3 = musteriListe.Where(funcDelegateKullanimi);
+
+            Console.WriteLine(delegateKullanim1.Count());
+            Console.WriteLine(delegateKullanim2.Count());
+            Console.WriteLine(delegateKullanim3.Count());
+
+            var delegateKullanim4 = musteriListe.Where(new Func<Musteri, bool>(funcDelegateKullanimi));
+            var delegateKullanim5 = musteriListe.Where(delegate (Musteri m) { return m.isim[0] == 'A' ? true : false; });
+
+            //Linq with ternary :
+            var delegateKullanim6 = musteriListe.Where((Musteri m) => { return m.isim[0] == 'A' ? true : false; });
+            var delegateKullanim7 = musteriListe.Where(m => { return m.isim[0] == 'A' ? true : false; });
+            //ilk linq alternatif :
+            var delegateKullanim8 = musteriListe.Where(m => m.isim[0] == 'A');
+            #endregion
+
+            #region Predicate Delegate Kullanımı
+
+            Predicate<Musteri> predicate = new Predicate<Musteri>(predicateDelegateMetod);
+
+            var predicateDelegateKullanim1 = musteriListe.FindAll(predicate);
+
+            var predicateDelegateKullanim2 = musteriListe.FindAll(new Predicate<Musteri>(predicateDelegateMetod));
+
+            var predicateDelegateKullanim3 = musteriListe.FindAll(delegate (Musteri m) { return m.dogumTarihi.Year > 1990; });
+
+            var predicateDelegateKullanim4 = musteriListe.FindAll((Musteri m) => { return m.dogumTarihi.Year > 1990; });
+
+            var predicateDelegateKullanim5 = musteriListe.FindAll(m => m.dogumTarihi.Year > 1990);
+            #endregion
+        }
+        static bool funcDelegateKullanimi(Musteri m)
+        {
+            if (m.isim[0] == 'A')
+                return true;
+            else
+                return false;
+        }
+
+        static bool predicateDelegateMetod(Musteri m)
+        {
+            if (m.dogumTarihi.Year > 1990)
+                return true;
+            else
+                return false;
         }
 
     }
