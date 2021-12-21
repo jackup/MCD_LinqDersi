@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCD_LinqDersi", "MCD_LinqDersi\MCD_LinqDersi.csproj", "{3307AAB2-D9E1-4BFF-9453-A727529E1D93}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3307AAB2-D9E1-4BFF-9453-A727529E1D93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3307AAB2-D9E1-4BFF-9453-A727529E1D93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3307AAB2-D9E1-4BFF-9453-A727529E1D93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3307AAB2-D9E1-4BFF-9453-A727529E1D93}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {680E6CDE-375B-4B64-AA9A-A7A5D48B1541}
+	EndGlobalSection
+EndGlobal
